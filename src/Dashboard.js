@@ -1,4 +1,6 @@
 import React from "react";
+import ByPaymentNetwork from "./ByPaymentNetwork";
+import ByPaymentStatus from "./ByPaymentStatus";
 import { selectDashboardData } from "./selectors";
 import { formatCurrency, formatNumber, formatPercentage } from "./utils";
 
@@ -27,20 +29,13 @@ const Header = ({
   );
 };
 
-const ByPaymentNetwork = () => {
-  return (
-    <div>
-      <h3>By Payment Network</h3>
-    </div>
-  );
-};
-
 export default ({ data }) => {
   const dashboardData = selectDashboardData(data);
 
   return (
     <div>
       <Header {...dashboardData} />
+      <ByPaymentStatus {...dashboardData} />
       <ByPaymentNetwork {...dashboardData} />
     </div>
   );

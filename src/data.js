@@ -1,7 +1,7 @@
 export const dashboardData = {
   data: {
-    totalPaymentVolume: 5000000,
-    totalPaymentAmount: 89950000,
+    totalPaymentVolume: 325925,
+    totalPaymentAmount: 9407184.61,
     byPaymentStatus: [
       {
         paymentStatus: "ACTION_REQUIRED",
@@ -12,8 +12,8 @@ export const dashboardData = {
       {
         paymentStatus: "COMPLETE",
         paymentStatusDisplayName: "Action Required",
-        totalPaymentVolume: 4000000,
-        totalPaymentAmount: 80501359
+        totalPaymentVolume: 325925,
+        totalPaymentAmount: 7407184.61
       },
       {
         paymentStatus: "PENDING_ACCEPTANCE",

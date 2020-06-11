@@ -12,6 +12,8 @@ export const selectDashboardData = ({ data, metadata }) => {
     totalCompletedVolume: find(
       get(data, "byPaymentStatus"),
       ({ paymentStatus }) => paymentStatus === "COMPLETE"
-    ).totalPaymentVolume
+    ).totalPaymentVolume,
+    byPaymentNetwork: get(data, "byPaymentNetwork"),
+    byPaymentStatus: get(data, "byPaymentStatus")
   };
 };
