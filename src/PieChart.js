@@ -1,36 +1,41 @@
 import React, { PureComponent } from "react";
-import { PieChart, Pie, Tooltip } from "recharts";
-
-const CustomTooltip = ({ active, payload, label, data }) => {
-  if (active) {
-    return <div>{`${data.total} : ${payload[0].value}`}</div>;
-  }
-
-  return null;
-};
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
 export default class Example extends PureComponent {
   render() {
-    const { data, getTooltipLabel } = this.props;
+    const {
+      containerProps,
+      chartProps,
+      pieProps,
+      tooltipProps,
+      colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
+    } = this.props;
 
     return (
-      <PieChart width={600} height={400}>
-        <Pie
-          dataKey="value"
-          isAnimationActive={false}
-          data={data}
-          cx={200}
-          cy={200}
-          outerRadius={80}
-          fill="#8884d8"
-          label={({ index }) => data[index].name}
-        />
-        <Tooltip
-          content={({ active, payload, label, data }) =>
-            getTooltipLabel({ active, payload, label, data })
-          }
-        />
-      </PieChart>
+      <div style={{ backgroundColor: "lightgray" }} {...containerProps}>
+        {/* <ResponsiveContainer> */}
+        <PieChart {...chartProps}>
+          {/* <Legend /> */}
+          <Pie
+            dataKey="value"
+            isAnimationActive={true}
+            cx={200}
+            cy={200}
+            outerRadius={80}
+            fill="#8884d8"
+            {...pieProps}
+          >
+            {pieProps.data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={colors[index % colors.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip {...tooltipProps} />
+        </PieChart>
+        {/* </ResponsiveContainer> */}
+      </div>
     );
   }
 }

@@ -1,25 +1,25 @@
 export const dashboardData = {
   data: {
-    totalPaymentVolume: 325925,
-    totalPaymentAmount: 9407184.61,
+    totalPaymentVolume: 448147,
+    totalPaymentAmount: 9615958.61,
     byPaymentStatus: [
       {
         paymentStatus: "ACTION_REQUIRED",
         paymentStatusDisplayName: "Action Required",
-        totalPaymentVolume: 250000,
-        totalPaymentAmount: 449750
+        totalPaymentVolume: 40740,
+        totalPaymentAmount: 737912
       },
       {
         paymentStatus: "COMPLETE",
-        paymentStatusDisplayName: "Action Required",
+        paymentStatusDisplayName: "Complete",
         totalPaymentVolume: 325925,
         totalPaymentAmount: 7407184.61
       },
       {
         paymentStatus: "PENDING_ACCEPTANCE",
-        paymentStatusDisplayName: "Action Required",
-        totalPaymentVolume: 750000,
-        totalPaymentAmount: 13492500
+        paymentStatusDisplayName: "Awaiting Acceptance",
+        totalPaymentVolume: 81482,
+        totalPaymentAmount: 1470862
       }
     ],
     byPaymentNetwork: [

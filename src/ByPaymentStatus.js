@@ -3,15 +3,15 @@ import PieChart from "./PieChart";
 import { formatCurrency, formatNumber, formatPercentage } from "./utils";
 
 const ByPaymentStatus = ({
-  byPaymentNetwork,
-  totalCompletedVolume,
-  totalCompletedAmount
+  byPaymentStatus,
+  totalPaymentVolume,
+  totalPaymentAmount
 }) => {
-  const pieData = byPaymentNetwork.map(
-    ({ paymentNetworkDisplayName, totalPaidVolume, ...other }) => ({
-      name: paymentNetworkDisplayName,
-      value: totalPaidVolume,
-      totalPaidVolume,
+  const pieData = byPaymentStatus.map(
+    ({ paymentStatusDisplayName, totalPaymentVolume, ...other }) => ({
+      name: paymentStatusDisplayName,
+      value: totalPaymentVolume,
+      totalPaymentVolume,
       ...other
     })
   );
@@ -21,24 +21,24 @@ const ByPaymentStatus = ({
     else {
       const { payload: data } = payload[0];
       const {
-        totalPaidVolume: networkTotalPaidVolume,
-        totalPaidAmount: networkTotalPaidAmount
+        totalPaymentVolume: statusTotalPaymentVolume,
+        totalPaymentAmount: statusTotalPaymentAmount
       } = data;
 
       return (
         <div>
           <div>
             {`${formatNumber(
-              networkTotalPaidVolume
+              statusTotalPaymentVolume
             )} Payments (${formatPercentage(
-              networkTotalPaidVolume / totalCompletedVolume
+              statusTotalPaymentVolume / totalPaymentVolume
             )})`}
           </div>
           <div>
             {`${formatCurrency(
-              networkTotalPaidAmount
-            )} Total Paid (${formatPercentage(
-              networkTotalPaidAmount / totalCompletedAmount
+              statusTotalPaymentAmount
+            )} Total Amount (${formatPercentage(
+              statusTotalPaymentAmount / totalPaymentAmount
             )})`}
           </div>
         </div>
@@ -49,7 +49,28 @@ const ByPaymentStatus = ({
   return (
     <div>
       <h3>By Payment Status</h3>
-      <PieChart data={pieData} getTooltipLabel={getTooltipLabel} />
+      <PieChart
+        // containerProps={{
+        //   style: { width: "100%", height: "200px", backgroundColor: "orange" }
+        // }}
+        chartProps={{
+          height: 400,
+          width: 800
+        }}
+        pieProps={{
+          width: 800,
+          data: pieData,
+          label: ({ index }) => {
+            return `${pieData[index].name} (${formatPercentage(
+              pieData[index].value / totalPaymentVolume
+            )})`;
+          }
+        }}
+        data={pieData}
+        tooltipProps={{
+          content: getTooltipLabel
+        }}
+      />
     </div>
   );
 };

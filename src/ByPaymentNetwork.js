@@ -49,7 +49,22 @@ const ByPaymentNetwork = ({
   return (
     <div>
       <h3>By Payment Network</h3>
-      <PieChart data={pieData} getTooltipLabel={getTooltipLabel} />
+      <PieChart
+        // containerProps={{
+        //   style: { width: "100%", height: "100%" }
+        // }}
+        chartProps={{
+          height: 400,
+          width: 800
+        }}
+        pieProps={{
+          data: pieData,
+          label: ({ index }) => pieData[index].name
+        }}
+        tooltipProps={{
+          content: getTooltipLabel
+        }}
+      />
     </div>
   );
 };

@@ -2,3 +2,11 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+.recharts-wrapper svg {
+  overflow: inherit !important;
+}
